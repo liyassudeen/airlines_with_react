@@ -1,0 +1,13 @@
+.seatContainer {
+  border: 1px solid grey;
+}
+
+.seat {
+  display: inline-block;
+  width: 50%;
+  height: 20px;
+  text-align: center;
+}
+.seat.active {
+  background: green;
+}
