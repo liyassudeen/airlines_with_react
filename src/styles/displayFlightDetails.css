@@ -1,0 +1,9 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: violet;
+  height: 80px;
+  border: 1px solid violet;
+  border-radius: 4px;
+}

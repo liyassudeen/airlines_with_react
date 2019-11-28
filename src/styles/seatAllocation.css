@@ -1,8 +1,11 @@
 .seatContainer {
-  border: 1px solid grey;
+  border: 0.5px solid violet;
+  border-radius: 4px;
 }
 
 .seat {
+  color: violet;
+  font-weight: 700;
   display: inline-block;
   width: 50%;
   height: 20px;
@@ -13,10 +16,13 @@
 }
 .seat.disabledPerson {
   background: yellow;
+  opacity: 0.5;
 }
 .seat.infant {
   background: blue;
+  opacity: 0.5;
 }
 .seat.check-in {
   background: green;
+  opacity: 0.5;
 }

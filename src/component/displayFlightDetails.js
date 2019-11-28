@@ -1,5 +1,6 @@
 import React from "react";
 import SeatAllocation from "./seatAllocation";
+import "../styles/displayFlightDetails.css";
 
 export default class FlightDetails extends React.Component {
   constructor(props) {
