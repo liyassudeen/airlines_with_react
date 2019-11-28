@@ -11,3 +11,12 @@
 .seat.active {
   background: green;
 }
+.seat.disabledPerson {
+  background: yellow;
+}
+.seat.infant {
+  background: blue;
+}
+.seat.check-in {
+  background: green;
+}

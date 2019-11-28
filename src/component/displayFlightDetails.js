@@ -10,7 +10,21 @@ export default class FlightDetails extends React.Component {
     seatDetails: {
       name: "Indian Airlines",
       totalSeats: 10,
-      availableSeats: 10
+      availableSeats: 10,
+      passengerDetails: [
+        {
+          id: 1,
+          category: "infant"
+        },
+        {
+          id: 3,
+          category: "disabledPerson"
+        },
+        {
+          id: 8,
+          category: "check-in"
+        }
+      ]
     }
   };
 
