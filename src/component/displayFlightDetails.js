@@ -1,41 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
 import SeatAllocation from "./seatAllocation";
 import "../styles/displayFlightDetails.css";
 
-export default class FlightDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { seatDetails: this.props.details };
-  }
-  static defaultProps = {
-    seatDetails: {
-      name: "Indian Airlines",
-      totalSeats: 10,
-      availableSeats: 10,
-      passengerDetails: [
-        {
-          id: 1,
-          category: "infant"
-        },
-        {
-          id: 3,
-          category: "disabledPerson"
-        },
-        {
-          id: 8,
-          category: "check-in"
-        }
-      ]
-    }
-  };
-
+class FlightDetails extends React.Component {
   render() {
-    const { name } = this.props.seatDetails;
+    console.log(this.props);
+    const { name } = this.props;
     return (
       <div>
         <h1>{name}</h1>
-        <SeatAllocation {...this.props.seatDetails} />
+        <SeatAllocation {...this.props} />
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    name: state.seatDetails.name,
+    totalSeats: state.seatDetails.totalSeats,
+    availableSeats: state.seatDetails.availableSeats,
+    passengerDetails: state.seatDetails.passengerDetails
+  };
+};
+
+export default connect(mapStateToProps)(FlightDetails);
