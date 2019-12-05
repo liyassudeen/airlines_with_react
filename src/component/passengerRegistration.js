@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { submitForm } from "./action";
+import { store } from "./store";
 
-class PassengerRegistration extends React.Component {
+export default class PassengerRegistration extends React.Component {
   submitHandler = fields => {
-    this.props.submitForm(fields);
-    console.log("Hai");
+    store.dispatch(submitForm(fields));
+    console.log(store.getState());
   };
   render() {
     return (
@@ -26,7 +27,7 @@ class PassengerRegistration extends React.Component {
             .email("Email is invalid")
             .required("Email is required")
         })}
-        onSubmit={this.submitHandler}
+        onSubmit={fields => this.submitHandler(fields)}
         render={({ errors, status, touched, submitHandler }) => (
           <Form>
             <div className="form-group">
@@ -99,11 +100,3 @@ class PassengerRegistration extends React.Component {
     );
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    submitForm: fields => dispatch(submitForm(fields))
-  };
-};
-
-export default connect(mapDispatchToProps)(PassengerRegistration);

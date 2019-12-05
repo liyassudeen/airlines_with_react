@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
       seatnumber
     } = action.passengerDetails;
     return Object.assign({}, state, {
-      passengerDetails: state.passengerDetails.push({
+      passengerDetails: state.seatDetails.passengerDetails.push({
         firstName: firstName,
         lastName: lastName,
         email: email,
