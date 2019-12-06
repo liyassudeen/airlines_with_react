@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { submitForm } from "./action";
-import { store } from "./store";
+import SeatAllocation from "./seatAllocation";
 import "../styles/passengerRegistration.scss";
 
 class PassengerRegistration extends React.Component {
   submitHandler = fields => {
-    store.dispatch(submitForm(fields));
+    this.props.submitForm(fields);
   };
 
   renderSeatOptions = (seatsCount) => {
@@ -40,7 +40,9 @@ class PassengerRegistration extends React.Component {
               .email("Email is invalid")
               .required("Email is required"),
             category: Yup.string()
-            .required("category is required")
+            .required("Category is required"),
+            seatnumber: Yup.string()
+            .required("Seat Number is required")
           })}
           onSubmit={fields => this.submitHandler(fields)}
           render={({ errors, status, touched, submitHandler }) => (
@@ -102,7 +104,7 @@ class PassengerRegistration extends React.Component {
                   <option value="checkin">checkin</option>
                   <option value="infant">infant</option>
                   <option value="disabledPerson">disabledPerson</option>
-               </Field>
+                </Field>
               </div>
               <div className="form-group">
                 <label htmlFor="seatnumber">Seat Number</label>
@@ -110,7 +112,7 @@ class PassengerRegistration extends React.Component {
                   <option value="" selected> 
                     Select a seat number
                   </option>
-                  {this.renderSeatOptions(this.props.availableSeats)}
+                  {this.renderSeatOptions(this.props.totalSeats)}
                 </Field>
               </div>
               <div className="form-group">
@@ -131,8 +133,17 @@ class PassengerRegistration extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    availableSeats: state.seatDetails.availableSeats,
+    totalSeats: state.seatDetails.totalSeats,
+    passengerDetails: state.seatDetails.passengerDetails,
+    availableSeatNumbers: state.seatDetails.availableSeatNumbers
   };
 };
 
-export default connect(mapStateToProps)(PassengerRegistration);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    submitForm: fields => dispatch(submitForm(fields))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PassengerRegistration);

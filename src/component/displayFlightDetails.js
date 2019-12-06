@@ -19,10 +19,7 @@ class FlightDetails extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    name: state.seatDetails.name,
-    totalSeats: state.seatDetails.totalSeats,
-    availableSeats: state.seatDetails.availableSeats,
-    passengerDetails: state.seatDetails.passengerDetails
+    name: state.seatDetails.name
   };
 };
 

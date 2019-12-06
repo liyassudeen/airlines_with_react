@@ -8,23 +8,30 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  if (action.type === "PASSENGER-CHECKIN") {
-    const {
-      firstName,
-      lastName,
-      email,
-      category,
-      seatnumber
-    } = action.passengerDetails;
-    return Object.assign({}, state, {
-      passengerDetails: state.seatDetails.passengerDetails.push({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        category: category,
-        seatnumber: seatnumber
-      })
-    });
+    if (action.type === "PASSENGER-CHECKIN") {
+      const {
+        firstName,
+        lastName,
+        email,
+        category,
+        seatnumber
+      } = action.passengerDetails;
+      return { ...state, 
+        seatDetails: {
+          ...state.seatDetails,
+          passengerDetails: [...state.seatDetails.passengerDetails,{
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          category: category,
+          seatnumber: seatnumber
+        }],
+      }
+    }
   }
+  /* if (action.type === "AVAILABLE-SEAT-NUMBERS") {
+    const { availableSeatNumbers } = action
+    return {...state, availableSeatNumbers: [...state.availableSeatNumbers, ...availableSeatNumbers]}
+  } */
   return state;
 }

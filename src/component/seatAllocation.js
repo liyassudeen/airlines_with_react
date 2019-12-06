@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { store } from "./store";
+import { availableSeatNumbers } from "./action";
 import "../styles/seatAllocation.scss";
 
 class SeatAllocation extends React.Component {
@@ -19,11 +21,13 @@ class SeatAllocation extends React.Component {
   renderSeats(seatsCount) {
     const seats = [];
     for (let i = 1; i <= seatsCount; i++) {
+      //store.dispatch(availableSeatNumbers(i));
       const { passengerDetails } = this.props;
       let className = "seat";
       passengerDetails.forEach(passenger => {
         className += passenger.seatnumber == i ? " " + passenger.category : "";
       });
+     //store.dispatch(availableSeatNumbers(availableSeats));
       seats.push(
         <div className={className} onClick={this.clickHandler} id={i}>
           Seat {i}
@@ -34,7 +38,6 @@ class SeatAllocation extends React.Component {
   }
   render() {
     const { totalSeats } = this.props;
-    console.log(this.props);
     return <div className="seatContainer">{this.renderSeats(totalSeats)}</div>;
   }
 }
@@ -42,8 +45,8 @@ class SeatAllocation extends React.Component {
 const mapStateToProps = state => {
   return {
     totalSeats: state.seatDetails.totalSeats,
-    availableSeats: state.seatDetails.availableSeats,
-    passengerDetails: state.seatDetails.passengerDetails
+    passengerDetails: state.seatDetails.passengerDetails,
+    availableSeatNumbers: state.seatDetails.availableSeatNumbers
   };
 };
 
