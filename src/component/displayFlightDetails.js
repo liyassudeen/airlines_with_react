@@ -1,16 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import SeatAllocation from "./seatAllocation";
-import "../styles/displayFlightDetails.css";
+import PassengerRegistration from "./passengerRegistration";
+import "../styles/displayFlightDetails.scss";
 
 class FlightDetails extends React.Component {
   render() {
-    console.log(this.props);
     const { name } = this.props;
     return (
-      <div>
+      <div className="flight-details-container">
         <h1>{name}</h1>
-        <SeatAllocation {...this.props} />
+        <SeatAllocation />
+        <PassengerRegistration />
       </div>
     );
   }

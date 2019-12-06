@@ -1,0 +1,46 @@
+.passenger-reg-container {
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid violet;
+  border-radius: 4px;
+  margin-top: 8px;
+  padding: 0 8px 8px;;
+  box-sizing: border-box;
+  h2 {
+    color: violet;
+    text-align: center; 
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    &:last-of-type {
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 12px;
+      button {
+        width: 100px;
+        background: white;
+        color: violet;
+        border: 1px solid violet;
+        border-radius: 4px;
+        outline: none;
+        &:first-of-type {
+          background: violet;
+          color: white;
+          margin-right: 4px;
+        }
+      }
+    }
+    label {
+      color: violet;
+    }
+    input, select {
+      border: 1px solid violet;
+      border-radius: 4px;
+      color: violet;
+    }
+    .invalid-feedback {
+      color: red;
+    }
+  }
+}
