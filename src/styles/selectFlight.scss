@@ -1,0 +1,44 @@
+.select-flight-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: violet;
+  height: 80px;
+  border: 1px solid violet;
+  border-radius: 4px;
+}
+
+.select-form-container{
+  display: flex;
+  justify-content: center;
+  button {
+    width: 100px;
+    background: white;
+    color: violet;
+    border: 1px solid violet;
+    border-radius: 4px;
+    outline: none;
+    &:first-of-type {
+      background: violet;
+      color: white;
+      margin-bottom: 4px;
+    }
+  }
+  select, .flight-select-label {
+    color: violet;
+  }
+  select {
+    border: 1px solid violet;
+    border-radius: 4px;
+    outline: none;
+  }
+  .invalid-feedback {
+    color: red;
+  }
+}
+

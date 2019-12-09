@@ -1,8 +1,10 @@
 import React from "react";
 import flight_details from "../data/flight_details";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { store } from "./store.js";
 import { updateFlightDetails } from "./action";
+import "../styles/selectFlight.scss";
 
 export default class SelectFlight extends React.Component {
   submitHandler = fields => {
@@ -31,11 +33,16 @@ export default class SelectFlight extends React.Component {
           initialValues={{
             flightName: ""
           }}
+          validationSchema={Yup.object().shape({
+            flightName: Yup.string().required("Flight Name is required")
+          })}
           onSubmit={fields => this.submitHandler(fields)}
           render={({ errors, status, touched, submitHandler }) => (
-            <Form className="form-container">
+            <Form className="select-form-container">
               <div className="form-group">
-                <label htmlFor="flightName">Select Flight</label>
+                <label htmlFor="flightName" className="flight-select-label">
+                  Select Flight
+                </label>
                 <Field name="flightName" component="select">
                   <option value="" selected>
                     Select a category

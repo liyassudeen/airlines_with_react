@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { submitForm } from "./action";
-import SeatAllocation from "./seatAllocation";
 import "../styles/passengerRegistration.scss";
 
 class PassengerRegistration extends React.Component {
@@ -11,15 +10,13 @@ class PassengerRegistration extends React.Component {
     this.props.submitForm(fields);
   };
 
-  renderSeatOptions = (seatsCount) => {
+  renderSeatOptions = seatsCount => {
     const seatOptions = [];
     for (let i = 1; i <= seatsCount; i++) {
-      seatOptions.push(
-        <option value={i}>{i}</option>
-      );
-    } 
+      seatOptions.push(<option value={i}>{i}</option>);
+    }
     return seatOptions;
-  }
+  };
 
   render() {
     return (
@@ -39,10 +36,8 @@ class PassengerRegistration extends React.Component {
             email: Yup.string()
               .email("Email is invalid")
               .required("Email is required"),
-            category: Yup.string()
-            .required("Category is required"),
-            seatnumber: Yup.string()
-            .required("Seat Number is required")
+            category: Yup.string().required("Category is required"),
+            seatnumber: Yup.string().required("Seat Number is required")
           })}
           onSubmit={fields => this.submitHandler(fields)}
           render={({ errors, status, touched, submitHandler }) => (
@@ -95,10 +90,10 @@ class PassengerRegistration extends React.Component {
                   className="invalid-feedback"
                 />
               </div>
-              <div className="form-group"> 
+              <div className="form-group">
                 <label htmlFor="category">Category</label>
                 <Field name="category" component="select">
-                  <option value="" selected> 
+                  <option value="" selected>
                     Select a category
                   </option>
                   <option value="checkin">checkin</option>
@@ -109,7 +104,7 @@ class PassengerRegistration extends React.Component {
               <div className="form-group">
                 <label htmlFor="seatnumber">Seat Number</label>
                 <Field name="seatnumber" component="select">
-                  <option value="" selected> 
+                  <option value="" selected>
                     Select a seat number
                   </option>
                   {this.renderSeatOptions(this.props.totalSeats)}
@@ -139,11 +134,13 @@ const mapStateToProps = state => {
   };
 };
 
-
 const mapDispatchToProps = dispatch => {
   return {
     submitForm: fields => dispatch(submitForm(fields))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PassengerRegistration);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PassengerRegistration);
