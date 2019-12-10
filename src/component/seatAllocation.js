@@ -27,18 +27,53 @@ class SeatAllocation extends React.Component {
       passengerDetails.forEach(passenger => {
         className += passenger.seatnumber == i ? " " + passenger.category : "";
       });
-     //store.dispatch(availableSeatNumbers(availableSeats));
+      //store.dispatch(availableSeatNumbers(availableSeats));
       seats.push(
         <div className={className} onClick={this.clickHandler} id={i}>
           Seat {i}
         </div>
       );
-    } 
+    }
     return seats;
+  }
+  renderSeatCodes() {
+    return (
+      <div className="seat-code-container">
+        <div>
+          <div className="seat-code">
+            <div className="yellow-code" />
+            <span>{" - "}</span>
+            <div>Disabled Person</div>
+          </div>
+          <div className="seat-code">
+            <div className="blue-code" />
+            <span>{" - "}</span>
+            <div>Infant</div>
+          </div>
+        </div>
+        <div>
+          <div className="seat-code">
+            <div className="green-code" />
+            <span>{" - "}</span>
+            <div>Check-In</div>
+          </div>
+          <div className="seat-code">
+            <div className="white-code" />
+            <span>{" - "}</span>
+            <div>Available</div>
+          </div>
+        </div>
+      </div>
+    );
   }
   render() {
     const { totalSeats } = this.props;
-    return <div className="seatContainer">{this.renderSeats(totalSeats)}</div>;
+    return (
+      <div className="seatContainer">
+        {this.renderSeats(totalSeats)}
+        {this.renderSeatCodes()}
+      </div>
+    );
   }
 }
 

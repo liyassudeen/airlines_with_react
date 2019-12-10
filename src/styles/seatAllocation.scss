@@ -3,6 +3,35 @@
   border-radius: 4px;
 }
 
+.seat-code-container {
+  display: flex;
+  justify-content: space-around;
+  border-top: 0.5px solid violet;
+  padding-top: 4px;
+  .seat-code {
+    display: flex;
+    color: magenta;
+    margin-bottom: 4px;
+  }
+  .yellow-code, .blue-code, .green-code, .white-code {
+    width: 20px;
+    height: 20px;
+    border: 1px solid violet;
+  }
+  .yellow-code {
+    background: yellow;
+  }
+  .green-code {
+    background: green;
+  }
+  .blue-code {
+    background: blue;
+  }
+  .white-code {
+    background: white;
+  }
+}
+
 .seat {
   color: violet;
   font-weight: 700;
