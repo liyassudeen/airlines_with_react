@@ -2,10 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { submitForm } from "./action";
+import { updateSeatAvailability, submitForm } from "./action";
 import "../styles/passengerRegistration.scss";
 
 class PassengerRegistration extends React.Component {
+  static defaultProps = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    category: "",
+    seatnumber: ""
+  };
+
   submitHandler = fields => {
     this.props.submitForm(fields);
   };
@@ -13,7 +21,9 @@ class PassengerRegistration extends React.Component {
   renderSeatOptions = seatsCount => {
     const seatOptions = [];
     for (let i = 1; i <= seatsCount; i++) {
+      //if(!this.props.bookedSeats.includes(i)) {
       seatOptions.push(<option value={i}>{i}</option>);
+      //}
     }
     return seatOptions;
   };
@@ -24,11 +34,11 @@ class PassengerRegistration extends React.Component {
         <h2>Passenger Check-In</h2>
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            category: "",
-            seatnumber: ""
+            firstName: this.props.firstName,
+            lastName: this.props.lastName,
+            email: this.props.email,
+            category: this.props.category,
+            seatnumber: this.props.seatnumber
           }}
           validationSchema={Yup.object().shape({
             firstName: Yup.string().required("First Name is required"),
@@ -129,8 +139,8 @@ class PassengerRegistration extends React.Component {
 const mapStateToProps = state => {
   return {
     totalSeats: state.seatDetails.totalSeats,
-    passengerDetails: state.seatDetails.passengerDetails,
-    availableSeatNumbers: state.seatDetails.availableSeatNumbers
+    availableSeats: state.seatDetails.availableSeats,
+    passengerDetails: state.seatDetails.passengerDetails
   };
 };
 

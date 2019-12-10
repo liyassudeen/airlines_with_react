@@ -1,12 +1,14 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { store } from "./store";
 import { availableSeatNumbers } from "./action";
 import "../styles/seatAllocation.scss";
+import PassengerRegistration from "./passengerRegistration";
 
 class SeatAllocation extends React.Component {
-  clickHandler = e => {
-    if (
+  clickHandler = (e, i) => {
+    /* if (
       e.target.className.includes("checkin") ||
       e.target.className.includes("infant") ||
       e.target.className.includes("disabledPerson")
@@ -16,7 +18,11 @@ class SeatAllocation extends React.Component {
       e.target.className = "seat";
     } else {
       e.target.className = "seat active";
-    }
+    } */
+    console.log(e, i);
+    /* if (e.target.className !== "seat") {
+      ReactDOM.render(<PassengerRegistration {...this.props.passengerDetails[0]} />);
+    } */
   };
   renderSeats(seatsCount) {
     const seats = [];
@@ -29,7 +35,11 @@ class SeatAllocation extends React.Component {
       });
       //store.dispatch(availableSeatNumbers(availableSeats));
       seats.push(
-        <div className={className} onClick={this.clickHandler} id={i}>
+        <div
+          className={className}
+          onClick={e => this.clickHandler(e, i)}
+          id={i}
+        >
           Seat {i}
         </div>
       );
@@ -66,12 +76,24 @@ class SeatAllocation extends React.Component {
       </div>
     );
   }
+
+  renderAvailableSeatsCount() {
+    return (
+      <div class="seats-count-container">
+        Available Seats :
+        <span className="available-seats">{this.props.availableSeats}</span>{" "}
+        <span>of</span>{" "}
+        <span className="total-seats">{this.props.totalSeats}</span>
+      </div>
+    );
+  }
   render() {
     const { totalSeats } = this.props;
     return (
       <div className="seatContainer">
         {this.renderSeats(totalSeats)}
         {this.renderSeatCodes()}
+        {this.renderAvailableSeatsCount()}
       </div>
     );
   }
@@ -80,8 +102,10 @@ class SeatAllocation extends React.Component {
 const mapStateToProps = state => {
   return {
     totalSeats: state.seatDetails.totalSeats,
+    availableSeats: state.seatDetails.availableSeats,
     passengerDetails: state.seatDetails.passengerDetails,
-    availableSeatNumbers: state.seatDetails.availableSeatNumbers
+    availableSeatNumbers: state.seatDetails.availableSeatNumbers,
+    bookedSeats: state.seatDetails.bookedSeats
   };
 };
 

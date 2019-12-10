@@ -32,6 +32,18 @@
   }
 }
 
+.seats-count-container {
+  display: flex;
+  justify-content: center;
+  color: violet;
+  .available-seats {
+    color: green;
+  }
+  .total-seats {
+    color: blue;
+  }
+}
+
 .seat {
   color: violet;
   font-weight: 700;

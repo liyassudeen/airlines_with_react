@@ -2,8 +2,9 @@ const initialState = {
   seatDetails: {
     name: "Indian Airlines",
     totalSeats: 10,
-    availableSeats: 7,
-    passengerDetails: []
+    availableSeats: 10,
+    passengerDetails: [],
+    bookedSeats: []
   }
 };
 
@@ -29,7 +30,9 @@ export default function reducer(state = initialState, action) {
             category: category,
             seatnumber: seatnumber
           }
-        ]
+        ],
+        bookedSeats: [...state.seatDetails.bookedSeats, action.bookedSeat],
+        availableSeats: state.seatDetails.availableSeats - 1
       }
     };
   }
