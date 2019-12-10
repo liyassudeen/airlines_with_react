@@ -35,7 +35,10 @@
 .seats-count-container {
   display: flex;
   justify-content: center;
-  color: violet;
+  color: magenta;
+  .space {
+    padding: 0 2px;
+  }
   .available-seats {
     color: green;
   }
@@ -57,13 +60,10 @@
 }
 .seat.disabledPerson {
   background: yellow;
-  opacity: 0.5;
 }
 .seat.infant {
   background: blue;
-  opacity: 0.5;
 }
 .seat.checkin {
   background: green;
-  opacity: 0.5;
 }

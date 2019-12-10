@@ -37,7 +37,8 @@
     input, select {
       border: 1px solid violet;
       border-radius: 4px;
-      color: violet;
+      color: violet !important;
+      outline: none;
     }
     .invalid-feedback {
       color: red;

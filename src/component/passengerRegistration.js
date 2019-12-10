@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { updateSeatAvailability, submitForm } from "./action";
+import { submitForm } from "./action";
 import "../styles/passengerRegistration.scss";
 
 class PassengerRegistration extends React.Component {
@@ -21,9 +21,7 @@ class PassengerRegistration extends React.Component {
   renderSeatOptions = seatsCount => {
     const seatOptions = [];
     for (let i = 1; i <= seatsCount; i++) {
-      //if(!this.props.bookedSeats.includes(i)) {
       seatOptions.push(<option value={i}>{i}</option>);
-      //}
     }
     return seatOptions;
   };

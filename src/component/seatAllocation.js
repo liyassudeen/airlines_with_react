@@ -1,24 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { store } from "./store";
-import { availableSeatNumbers } from "./action";
 import "../styles/seatAllocation.scss";
-import PassengerRegistration from "./passengerRegistration";
 
 class SeatAllocation extends React.Component {
   clickHandler = (e, i) => {
-    /* if (
-      e.target.className.includes("checkin") ||
-      e.target.className.includes("infant") ||
-      e.target.className.includes("disabledPerson")
-    ) {
-      e.target.disabled = true;
-    } else if (e.target.className === "seat active") {
-      e.target.className = "seat";
-    } else {
-      e.target.className = "seat active";
-    } */
     console.log(e, i);
     /* if (e.target.className !== "seat") {
       ReactDOM.render(<PassengerRegistration {...this.props.passengerDetails[0]} />);
@@ -27,13 +12,11 @@ class SeatAllocation extends React.Component {
   renderSeats(seatsCount) {
     const seats = [];
     for (let i = 1; i <= seatsCount; i++) {
-      //store.dispatch(availableSeatNumbers(i));
       const { passengerDetails } = this.props;
       let className = "seat";
       passengerDetails.forEach(passenger => {
         className += passenger.seatnumber == i ? " " + passenger.category : "";
       });
-      //store.dispatch(availableSeatNumbers(availableSeats));
       seats.push(
         <div
           className={className}
@@ -81,9 +64,9 @@ class SeatAllocation extends React.Component {
     return (
       <div class="seats-count-container">
         Available Seats :
-        <span className="available-seats">{this.props.availableSeats}</span>{" "}
-        <span>of</span>{" "}
-        <span className="total-seats">{this.props.totalSeats}</span>
+        <span className="available-seats">{this.props.availableSeats}</span>
+        <span className="space">of</span>
+        <span className="total-seats"> {this.props.totalSeats}</span>
       </div>
     );
   }
