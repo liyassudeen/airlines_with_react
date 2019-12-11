@@ -14,8 +14,9 @@ class PassengerRegistration extends React.Component {
     seatnumber: ""
   };
 
-  submitHandler = fields => {
+  submitHandler = (fields, resetForm, initialValues) => {
     this.props.submitForm(fields);
+    resetForm(initialValues);
   };
 
   renderSeatOptions = seatsCount => {
@@ -47,7 +48,9 @@ class PassengerRegistration extends React.Component {
             category: Yup.string().required("Category is required"),
             seatnumber: Yup.string().required("Seat Number is required")
           })}
-          onSubmit={fields => this.submitHandler(fields)}
+          onSubmit={(fields, resetForm) =>
+            this.submitHandler(fields, resetForm, this.initialValues)
+          }
           render={({ errors, status, touched, submitHandler }) => (
             <Form className="form-container">
               <div className="form-group">
@@ -108,6 +111,11 @@ class PassengerRegistration extends React.Component {
                   <option value="infant">infant</option>
                   <option value="disabledPerson">disabledPerson</option>
                 </Field>
+                <ErrorMessage
+                  name="category"
+                  component="div"
+                  className="invalid-feedback"
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="seatnumber">Seat Number</label>
@@ -117,6 +125,11 @@ class PassengerRegistration extends React.Component {
                   </option>
                   {this.renderSeatOptions(this.props.totalSeats)}
                 </Field>
+                <ErrorMessage
+                  name="seatnumber"
+                  component="div"
+                  className="invalid-feedback"
+                />
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary mr-2">
