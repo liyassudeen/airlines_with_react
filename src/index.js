@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import SelectFlight from "./component/selectFlight";
 import FlightDetails from "./component/displayFlightDetails";
-import { store } from "./component/store";
+import { store } from "./redux/store";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

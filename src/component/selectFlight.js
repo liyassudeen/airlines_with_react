@@ -2,8 +2,8 @@ import React from "react";
 import flight_details from "../data/flight_details";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { store } from "./store.js";
-import { updateFlightDetails } from "./action";
+import { store } from "../redux/store.js";
+import { updateFlightDetails } from "../redux/action";
 import "../styles/selectFlight.scss";
 
 export default class SelectFlight extends React.Component {
