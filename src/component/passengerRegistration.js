@@ -14,9 +14,8 @@ class PassengerRegistration extends React.Component {
     seatnumber: ""
   };
 
-  submitHandler = (fields, resetForm, initialValues) => {
+  submitHandler = fields => {
     this.props.submitForm(fields);
-    resetForm(initialValues);
   };
 
   renderSeatOptions = seatsCount => {
@@ -48,9 +47,7 @@ class PassengerRegistration extends React.Component {
             category: Yup.string().required("Category is required"),
             seatnumber: Yup.string().required("Seat Number is required")
           })}
-          onSubmit={(fields, resetForm) =>
-            this.submitHandler(fields, resetForm, this.initialValues)
-          }
+          onSubmit={fields => this.submitHandler(fields)}
           render={({ errors, status, touched, submitHandler }) => (
             <Form className="form-container">
               <div className="form-group">
